@@ -5,9 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.ayeshaazeema.quezzz.R
+import com.ayeshaazeema.quezzz.databinding.FragmentOverBinding
+import com.ayeshaazeema.quezzz.databinding.FragmentWonBinding
 
 class WonFragment : Fragment() {
+
+    private lateinit var wonBinding: FragmentWonBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +22,12 @@ class WonFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_won, container, false)
+        wonBinding = FragmentWonBinding.inflate(inflater, container, false)
+        return wonBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        wonBinding.btnContinue.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_wonFragment_to_welcomeFragment))
     }
 }

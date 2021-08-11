@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.ayeshaazeema.quezzz.R
+import com.ayeshaazeema.quezzz.databinding.FragmentOverBinding
 
 class OverFragment : Fragment() {
+
+    private lateinit var overBinding: FragmentOverBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +21,12 @@ class OverFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_over, container, false)
+        overBinding = FragmentOverBinding.inflate(inflater, container, false)
+        return overBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        overBinding.btnTryAgain.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_overFragment_to_welcomeFragment))
     }
 }
